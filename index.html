@@ -5,14 +5,35 @@
   </head>
   <body>
 
-<h1>cpdxue.github.io</h1>
+  <h1>cpdxue.github.io</h1>
 
-      <script>
-        parent.postMessage( "msg from child to parent: \n" + 
-                            "  child knows parent referral is: " + document.referrer + "\n"+
-                            "  child knows utm params is " + document.location.href,
-          "http://drxiayth.github.io/");
-      </script>
+    <script>
+      parent_domain = "http://drxiayth.github.io/";
+      child_domain = "http://cpdxue.github.io/";
+
+      var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+      var eventer = window[eventMethod];
+      var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+      // First Message to Parent
+      parent.postMessage('msg from child to parent', parent_domain)
+
+      // Listen to message from child window
+      eventer(messageEvent,function(e) {
+        var origin == event.origin || event.originalEvent.origin;
+        if (origin != parent_domain){
+          return;
+        } else {
+          console.log('child received message!:  ',e.data);
+
+
+
+          // parent.postMessage( "msg from child to parent: \n" + 
+          //                     "  child knows parent referral is: " + document.referrer + "\n"+
+          //                     "  child knows utm params is " + document.location.href,
+          //   "http://drxiayth.github.io/");
+          // }
+    </script>
   
   </body>
 </html>
