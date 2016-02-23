@@ -2,18 +2,17 @@
 <html lang="en-us">
   <head>
     <title>cpdxue.gitHub.io</title>
+      <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-62341994-3', 'auto');
+ 
+      </script>
   </head>
   <body>
-  <!-- Google Tag Manager -->
-  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KJNW9B"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KJNW9B');</script>
-  <!-- End Google Tag Manager -->
-  
 
   <h1>cpdxue.github.io</h1>
 
@@ -40,6 +39,31 @@
         } else {
           console.log('6 child received message:', e.data);
           // console.log('7 child knew: ' + 'reff:' + parent.document.referrer + ' href:' + parent.document.location.href)
+          reff = decodeURIComponent(e.data.split('\n')[1])
+          dr = reff.substring(5).trim()   //ga referral
+          channel = decodeURIComponent(e.data.split('\n')[2])
+          channel_parts = channel.split('&')
+          for (c in channel_parts){
+            channel_part = channel_parts[c]
+            channel_part_data = channel_part.substring( part.indexOf('=')+1)
+            if (channel_part.indexOf('utm_campaign')>-1){
+              cn = channel_part_data;
+            }
+            if (channel_parts.indexOf('utm_source')>-1){
+              cs = channel_part_data;
+            }
+            if (channel_parts.indexOf('utm_medium')>-1){
+              cm = channel_part_data;
+            }
+            if (channel_parts.indexOf('utm_keyword')>-1){
+              ck = channel_part_data
+            }
+            if (channel_parts.indexOf('utm_conent')>-1){
+              cc = channel_part_data
+            }
+          }
+          ga('set', {'dr':dr, 'cn':cn, 'cs':cs, 'cm':cm, 'ck':ck, 'cc':cc });
+          ga('send', 'pageview');
         }
 
       },false);
