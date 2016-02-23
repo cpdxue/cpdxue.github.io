@@ -40,8 +40,10 @@
           console.log('6 child received message:', e.data);
           // console.log('7 child knew: ' + 'reff:' + parent.document.referrer + ' href:' + parent.document.location.href)
           reff = decodeURIComponent(e.data.split('\n')[1])
-          dr = reff.substring(5).trim()   //ga referral
-          channel = decodeURIComponent(e.data.split('\n')[2])
+          dr = reff.substring(5).trim()  
+          channel = e.data.split('\n')[2]
+          dl = document.location.href +  '?' + channel
+          channel = decodeURIComponent(channel)
           channel_parts = channel.split('&')
           for (c in channel_parts){
             channel_part = channel_parts[c]
@@ -63,7 +65,8 @@
               cc = channel_part_data
             }
           }
-          ga('set', {'referrer':dr, 'campaignName':cn, 'campaignSource':cs, 'campaignMedium':cm, 'campaignKeyword':ck, 'campaignContent':cc });
+          ga('set', {'referrer':dr, 'location':dl,
+                      'campaignName':cn, 'campaignSource':cs, 'campaignMedium':cm, 'campaignKeyword':ck, 'campaignContent':cc });
           ga('send', 'pageview');
         }
 
