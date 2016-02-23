@@ -17,13 +17,15 @@
 
       // First Message to Parent
       parent.postMessage('msg from child to parent', parent_domain)
+      console.log('msg sent from child to parent')
 
       // Listen to message from child window
       eventer(messageEvent,function(e) {
         var origin = event.origin || event.originalEvent.origin;
-        if (origin != parent_domain){
-          return;
-        } else {
+        // if (origin != parent_domain){
+          // return;
+        // } else {
+          console.log('child received from origin: ' + origin)
           console.log('child received message!:  ',e.data);
 
 
@@ -32,7 +34,7 @@
           //                     "  child knows parent referral is: " + document.referrer + "\n"+
           //                     "  child knows utm params is " + document.location.href,
           //   "http://drxiayth.github.io/");
-      
+
         }
 
         },false);
