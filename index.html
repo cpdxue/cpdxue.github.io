@@ -8,8 +8,8 @@
   <h1>cpdxue.github.io</h1>
 
     <script>
-      parent_domain = "http://drxiayth.github.io/";
-      child_domain = "http://cpdxue.github.io/";
+      parent_domain = "http://drxiayth.github.io";
+      child_domain = "http://cpdxue.github.io";
 
       var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
       var eventer = window[eventMethod];
@@ -17,7 +17,8 @@
 
       // First Message to Parent
       parent.postMessage('msg from child to parent', parent_domain)
-      console.log('msg sent from child to parent')
+      // console.log('msg sent from child to parent')
+
 
       // Listen to message from child window
       eventer(messageEvent,function(e) {
