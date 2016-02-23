@@ -42,7 +42,7 @@
           reff = decodeURIComponent(e.data.split('\n')[1])
           dr = reff.substring(5).trim()  
           channel = e.data.split('\n')[2]
-          dl = document.location.href +  '?' + channel
+          dl = document.location.href +  '?' + channel.substring(8)
           channel = decodeURIComponent(channel)
           channel_parts = channel.split('&')
           for (c in channel_parts){
