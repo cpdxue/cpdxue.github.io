@@ -16,27 +16,21 @@
       var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
 
       // First Message to Parent
-      console.log('child sending msg from child to parent')
-      parent.postMessage('a msg from child to parent', parent_domain)
+      console.log('1 child sending msg to parent')
+      parent.postMessage("a msg to parent: iframe present", parent_domain)
       
 
 
       // Listen to message from child window
       eventer(messageEvent,function(e) {
         var origin = event.origin || event.originalEvent.origin;
-        console.log('child received from origin: ' + origin)
+        console.log('5 child received from origin: ' + origin)
         if (origin != parent_domain){
           return;
         } else {
-          console.log('child received message!: ', e.data);
+          console.log('6 child received message!: ', e.data);
+          console.log('7 child knew: ' + 'reff:' = parent.document.referrer + ' href:' + parent.document.location.href)
         }
-
-          // parent.postMessage( "msg from child to parent: \n" + 
-          //                     "  child knows parent referral is: " + document.referrer + "\n"+
-          //                     "  child knows utm params is " + document.location.href,
-          //   "http://drxiayth.github.io/");
-
-        // }
 
       },false);
     </script>
