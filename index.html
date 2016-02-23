@@ -23,10 +23,10 @@
       // Listen to message from child window
       eventer(messageEvent,function(e) {
         var origin = event.origin || event.originalEvent.origin;
-        // if (origin != parent_domain){
-          // return;
-        // } else {
-          console.log('child received from origin: ' + origin)
+        console.log('child received from origin: ' + origin)
+        if (origin != parent_domain){
+          return;
+        } else {
           console.log('child received message!:  ',e.data);
 
 
