@@ -46,6 +46,7 @@
           for (c in channel_parts){
             channel_part = channel_parts[c]
             channel_part_data = channel_part.substring( channel_part.indexOf('=')+1)
+            var cn,cs,cm,ck,cc
             if (channel_part.indexOf('utm_campaign')>-1){
               cn = channel_part_data;
             }
